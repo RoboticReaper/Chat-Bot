@@ -6,7 +6,7 @@ public class ChatFrame{
   JTextArea area = new JTextArea();
   JTextField input = new JTextField();
   
-  public ChatFrame(String title, JFrame frame){
+  public ChatFrame(String title, JFrame frame, ChatHistoryManager history){
 
 
     // Create GUI elements
@@ -17,6 +17,7 @@ public class ChatFrame{
     back.setBounds(5, 5, 100, 25);
     back.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
+        
         frame.setTitle("Chat Bot");
         frame.getContentPane().removeAll();
         frame.add(MenuFrame.panel);
@@ -24,20 +25,33 @@ public class ChatFrame{
         frame.revalidate();
       }
     });
+
+    JButton clear = new JButton("Clear");
+    clear.setBounds(395, 5, 100, 25);
+    clear.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+    
+        if(title.equals("conversation")){
+          history.setConvo("");
+        } else if (title.equals("qna")){
+          history.setQna("");
+        } else if (title.equals("tldr")){
+          history.setTldr("");
+        } else if (title.equals("grammar")){
+          history.setGrammar("");
+        }
+
+        area.setText(loadTextArea(title, history));
+      }
+    });
     
     JSeparator s = new JSeparator();
     s.setOrientation(SwingConstants.HORIZONTAL);
     s.setBounds(0, 35, 500, 5);
 
-    String description = "";
-    if(title.equals("conversation")){
-      description = "";
-    } else if (title.equals("qna")){
-      description = "I am a highly intelligent question answering bot. If you ask me a question that is rooted in truth, I will give you the answer. If you ask me a question that is nonsense, trickery, or has no clear answer, I will respond with \"Unknown\".\n\n";
-    } else if (title.equals("tldr")){
-      description = "";
-    }
-    area.setText(description);
+    
+    
+    area.setText(loadTextArea(title, history));
     area.setWrapStyleWord(true);
     area.setLineWrap(true);
     area.setEditable(false);
@@ -64,22 +78,41 @@ public class ChatFrame{
                 area.append("You: "+text+"\n");
                 area.append("Friend: ");
                 String response = a.getResult(area);
-                area.append(response.substring(2)+"\n");
+                area.append(response.trim()+"\n");
               }
               else if(title.equals("qna")){
                 area.append("Q: "+text+"\n");
+                area.append("A: ");
+                String response = a.getResult(area);
+                area.append(response.trim()+"\n");
               }
               else if(title.equals("tldr")){
+                area.setText("");
                 area.append(text+"\n\ntl;dr\n\n");
+                String response = a.getResult(area);
+                area.append(response.trim());
               }
               else if(title.equals("grammar")){
-                area.append("Correct this to standard English: \n\n"+text+"\n\n");
+                area.append("Correct this to standard English: \n"+text+"\n");
+                String response = a.getResult(area);
+                area.append("\n"+response.trim()+"\n\n");
               }
               
               
             }
             input.setText("");
           }
+
+        // save chat history
+        if(title.equals("conversation")){
+          history.setConvo(area.getText());
+        } else if (title.equals("qna")){
+          history.setQna(area.getText());
+        } else if (title.equals("tldr")){
+          history.setTldr(area.getText());
+        } else if (title.equals("grammar")){
+          history.setGrammar(area.getText());
+        }
         }
     });
 
@@ -89,10 +122,26 @@ public class ChatFrame{
     panel.setLayout(null);
     panel.add(welcome);
     panel.add(back);
+    panel.add(clear);
     panel.add(s);
     panel.add(scroll);
     panel.add(s2);
     panel.add(hint);
     panel.add(input);
+  }
+
+  private String loadTextArea(String title, ChatHistoryManager history){
+    String description = "";
+    if(title.equals("conversation")){
+      description = history.getConvo();
+    } else if (title.equals("qna")){
+      description = history.getQna();
+    } else if (title.equals("tldr")){
+      description = history.getTldr();
+    } else if (title.equals("grammar")){
+      description = history.getGrammar();
+    }
+
+    return description;
   }
 }

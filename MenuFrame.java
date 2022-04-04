@@ -10,6 +10,9 @@ public class MenuFrame{
     frame.setTitle("Chat Bot");
     frame.setSize(500, 430);
 
+    // Load past conversations
+    ChatHistoryManager history = new ChatHistoryManager();
+
     // Create GUI elements
 
     JLabel welcome = new JLabel("Welcome! Please select what you would like to do with the bot:", SwingConstants.CENTER);
@@ -20,7 +23,7 @@ public class MenuFrame{
     
     convo.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        ChatFrame c = new ChatFrame("conversation", frame);
+        ChatFrame c = new ChatFrame("conversation", frame, history);
         frame.setTitle("Conversation");
         frame.getContentPane().removeAll();
         frame.add(c.panel);
@@ -34,7 +37,7 @@ public class MenuFrame{
 
     qna.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        ChatFrame c = new ChatFrame("qna", frame);
+        ChatFrame c = new ChatFrame("qna",frame, history);
         frame.setTitle("QnA Session");
         frame.getContentPane().removeAll();
         frame.add(c.panel);
@@ -48,7 +51,7 @@ public class MenuFrame{
 
     summary.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        ChatFrame c = new ChatFrame("tldr", frame);
+        ChatFrame c = new ChatFrame("tldr",frame, history);
         frame.setTitle("TL;DR Summarization");
         frame.getContentPane().removeAll();
         frame.add(c.panel);
@@ -62,7 +65,7 @@ public class MenuFrame{
 
     grammar.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        ChatFrame c = new ChatFrame("grammar", frame);
+        ChatFrame c = new ChatFrame("grammar",frame, history);
         frame.setTitle("Grammar Correction");
         frame.getContentPane().removeAll();
         frame.add(c.panel);

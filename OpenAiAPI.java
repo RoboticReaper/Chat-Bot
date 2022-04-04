@@ -29,8 +29,8 @@ public class OpenAiAPI{
                 .echo(false)
                 .maxTokens(500)
                 .temperature(0.9)
-                .presencePenalty(0.5)
-                .frequencyPenalty(0.5)
+                .presencePenalty(0.8)
+                .frequencyPenalty(0.8)
                 .stop(stop)
                 .build();
     return service.createCompletion("text-davinci-002", completionRequest).getChoices().get(0).getText();
