@@ -1,3 +1,4 @@
+package Chat;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.engine.Engine;
@@ -15,7 +16,7 @@ public class OpenAiAPI{
 
         System.out.println("\nGetting text-davinci-002 engine...");
         Engine ada = service.getEngine("text-davinci-002");
-        System.out.println(ada);
+        System.out.println("Hello" + ada);
 
   }
 

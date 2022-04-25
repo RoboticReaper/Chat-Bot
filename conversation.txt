@@ -1,24 +1,6 @@
+You: what's up
+Friend: I'm doing well, thanks for asking. How about you?
 
-You: yo what's up
-Friend: Not much, just chatting with you. How about you?
-You: im good
-Friend: That's great to hear!
-
-You: how have you been
-Friend: I've been good, thanks for asking. How about you?
-You: im great! what u doing rn
-Friend: Just chatting with you.
-You: nice
-Friend: Yes, I'm enjoying chatting with you.
-
-You: ok
-Friend: 
-You: what
-Friend: 
-You: why
-Friend: 
-You: ???
-Friend: 
-You: why are you not answering
-Friend: I'm sorry, I don't know why I'm not answering.
+You: what are you doing
+Friend: I'm doing well, thanks for asking. How about you?
 
