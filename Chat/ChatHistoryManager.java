@@ -5,10 +5,10 @@ import java.io.*;
 
 public class ChatHistoryManager{
   private String history="";
-  private File convo = new File("conversation.txt");
+  private File convo = new File("Chat/conversation.txt");
   
   public ChatHistoryManager(){
-    
+    // load chat history
 
     try {
       Scanner scan = new Scanner(convo);
@@ -21,6 +21,7 @@ public class ChatHistoryManager{
       history += convoHistory;
       
     } catch (FileNotFoundException e){
+      e.printStackTrace();
       history = "";
     }
   }
@@ -31,14 +32,15 @@ public class ChatHistoryManager{
   }
 
   public void setConvo(String s){
+    // write the history to file
     history = s;
 
     try{
-      PrintWriter writer = new PrintWriter("conversation.txt", "UTF-8");
+      PrintWriter writer = new PrintWriter(convo, "UTF-8");
       writer.println(history);
       writer.close();
     } catch (Exception e){
-      
+      e.printStackTrace();
     }
   }
 

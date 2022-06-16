@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class ChatPanel extends JPanel{
-  JTextArea area = new JTextArea();
-  JTextField input = new JTextField();
+  private JTextArea area = new JTextArea();
+  private JTextField input = new JTextField();
   
   public ChatPanel(GameFrame controller, ChatHistoryManager history){
 
@@ -59,8 +59,11 @@ public class ChatPanel extends JPanel{
       @Override
       public void keyPressed(KeyEvent e) {
           if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            // user sends the message
             String text = input.getText().trim();
+            
             if(!text.equals("")){
+              // format the text and add it at the end of the chat history
               area.append("You: "+text+"\n");
               area.append("Friend: ");
               String response = api.getResult(area);

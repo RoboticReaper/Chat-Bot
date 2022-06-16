@@ -1,6 +1,0 @@
-You: what's up
-Friend: I'm doing well, thanks for asking. How about you?
-
-You: what are you doing
-Friend: I'm doing well, thanks for asking. How about you?
-

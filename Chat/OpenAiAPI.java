@@ -7,16 +7,17 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class OpenAiAPI{
-  OpenAiService service = new OpenAiService(System.getenv("apiKey"));
+  private OpenAiService service = new OpenAiService(System.getenv("apiKey"));
   public OpenAiAPI(){
 
     
     System.out.println("\nGetting available engines...");
-        service.getEngines();
+    
+    service.getEngines();
 
-        System.out.println("\nGetting text-davinci-002 engine...");
-        Engine ada = service.getEngine("text-davinci-002");
-        System.out.println("Hello" + ada);
+    System.out.println("\nGetting text-davinci-002 engine...");
+    Engine ada = service.getEngine("text-davinci-002");
+    System.out.println("OpenAi Engine is ready");
 
   }
 
